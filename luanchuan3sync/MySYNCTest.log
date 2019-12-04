@@ -1,0 +1,9 @@
+DEBUG: Using JAVA_HOME
+DEBUG: _PENTAHO_JAVA_HOME=D:\Program Files (x86)\javagw20191031\jdk
+DEBUG: _PENTAHO_JAVA=D:\Program Files (x86)\javagw20191031\jdk\bin\java.exe
+
+D:\数据同步程序\data-integration>"D:\Program Files (x86)\javagw20191031\jdk\bin\java.exe"  "-Xmx512m" "-XX:MaxPermSize=256m" "-Djava.library.path=libswt\win64" "-DKETTLE_HOME=" "-DKETTLE_REPOSITORY=" "-DKETTLE_USER=" "-DKETTLE_PASSWORD=" "-DKETTLE_PLUGIN_PACKAGES=" "-DKETTLE_LOG_SIZE_LIMIT=" "-DKETTLE_JNDI_ROOT=" -jar launcher\pentaho-application-launcher-5.3.0.0-213.jar -lib ..\libswt\win64  -main org.pentaho.di.kitchen.Kitchen /file:D:\数据同步程序\work\luanchuan3sync\sync3.kjb /level:Basic 
+2019/12/04 19:47:28 - Kitchen - Logging is at level : 基本日志
+2019/12/04 19:47:28 - Kitchen - Start of run.
+2019/12/04 19:47:36 - sync3 - 开始执行任务
+2019/12/04 19:47:36 - sync3 - sync3

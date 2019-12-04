@@ -1,0 +1,1 @@
+D:\数据同步程序\data-integration\kitchen /file:D:\数据同步程序\work\luanchuan3sync\sync3.kjb /level:Basic>>MySYNCTest.log
