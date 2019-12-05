@@ -78,7 +78,7 @@
     <server>10.41.24.4</server>
     <type>MSSQL</type>
     <access>Native</access>
-    <database>HNYJ_GIS_DB</database>
+    <database>HSFX_DB</database>
     <port>1433</port>
     <username>sa</username>
     <password>Encrypted 2be98afc86aa7f2e4cb03bd7bfec3fd89</password>
@@ -283,6 +283,7 @@
            </partitioning>
     <keys>
       <key>TM</key>
+      <key>STCD</key>
     </keys>
     <values>
       <value>STCD</value>
