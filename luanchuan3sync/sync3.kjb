@@ -48,6 +48,22 @@
     </attributes>
   </connection>
   <connection>
+    <name>NativeDB</name>
+    <server>192.168.15.133</server>
+    <type>MSSQL</type>
+    <access>Native</access>
+    <database>HSFX_HNDB_TEST</database>
+    <port>1433</port>
+    <username>sa</username>
+    <password>Encrypted 2be98afc86aa7f28cb81fb6508cc2fe83</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>PORT_NUMBER</code><attribute>1433</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
     <name>target</name>
     <server>192.168.15.133</server>
     <type>MSSQL</type>
@@ -98,7 +114,7 @@
       <name>deletetarget</name>
       <description/>
       <type>SQL</type>
-      <sql>delete from ST_PPTN_R where TM&#x3e;&#x3d;&#x27;&#x24;&#x7b;TIME_STAMP&#x7d;&#x27;</sql>
+      <sql>DELETE ST_PPTN_R&#xd;&#xa;FROM&#xd;&#xa;        ST_PPTN_R&#xd;&#xa;LEFT JOIN ST_STBPRP_B ON st_pptn_r.stcd &#x3d; ST_STBPRP_B.stcd&#xd;&#xa;WHERE&#xd;&#xa;        ST_STBPRP_B.sttp &#x3d; &#x27;pp&#x27;&#xd;&#xa;AND ST_PPTN_R.TM &#x3e;&#x3d;&#x27;&#x24;&#x7b;TIME_STAMP&#x7d;&#x27;&#xd;&#xa;&#xd;&#xa;DELETE ST_RIVER_R&#xd;&#xa;FROM&#xd;&#xa;        ST_RIVER_R&#xd;&#xa;LEFT JOIN ST_STBPRP_B ON ST_RIVER_R.stcd &#x3d; ST_STBPRP_B.stcd&#xd;&#xa;WHERE&#xd;&#xa;        ST_STBPRP_B.sttp &#x3d; &#x27;ZZ&#x27; OR ST_STBPRP_B.sttp &#x3d; &#x27;ZQ&#x27;&#xd;&#xa;AND ST_RIVER_R.TM &#x3e;&#x3d;&#x27;&#x24;&#x7b;TIME_STAMP&#x7d;&#x27;</sql>
       <useVariableSubstitution>T</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
@@ -107,8 +123,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>555</xloc>
-      <yloc>223</yloc>
+      <xloc>497</xloc>
+      <yloc>141</yloc>
       </entry>
     <entry>
       <name>&#x8f6c;&#x6362; 2</name>
@@ -140,8 +156,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>671</xloc>
-      <yloc>249</yloc>
+      <xloc>610</xloc>
+      <yloc>144</yloc>
       </entry>
     <entry>
       <name>updatetimestamp</name>
@@ -175,8 +191,8 @@
       <type>SPECIAL</type>
       <start>Y</start>
       <dummy>N</dummy>
-      <repeat>Y</repeat>
-      <schedulerType>1</schedulerType>
+      <repeat>N</repeat>
+      <schedulerType>0</schedulerType>
       <intervalSeconds>0</intervalSeconds>
       <intervalMinutes>10</intervalMinutes>
       <hour>12</hour>
@@ -226,7 +242,7 @@
       <name>createEtl-temp</name>
       <description/>
       <type>SQL</type>
-      <sql>drop table etl_temp&#x3b;&#xd;&#xa;create table etl_temp &#xd;&#xa;      &#x28;&#xd;&#xa;        id int primary key,time_stamp datetime &#xd;&#xa;       &#x29;&#x3b;&#xd;&#xa;INSERT INTO etl_temp &#x28;id,time_stamp&#x29; VALUES &#x28;1, DATEADD&#x28;DD ,-1, getdate&#x28;&#x29;&#x29; &#x29;&#x3b;</sql>
+      <sql>if not exists&#x28;select null from sysobjects where xtype&#x3d;&#x27;u&#x27; and name &#x3d;&#x27;etl_temp&#x27;&#x29;&#xd;&#xa;    begin&#xd;&#xa;      &#x2f;&#x2a;&#x5efa;&#x8868;sql&#x811a;&#x672c;&#x2a;&#x2f;&#xd;&#xa;      create table etl_temp &#x28;id int primary key,time_stamp datetime&#x29;&#xd;&#xa;	  INSERT INTO etl_temp &#x28;id,time_stamp&#x29; VALUES &#x28;1, DATEADD&#x28;DD ,-4, getdate&#x28;&#x29;&#x29; &#x29;&#xd;&#xa;    end</sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename>D&#x3a;&#x5c;&#x6570;&#x636e;&#x540c;&#x6b65;&#x7a0b;&#x5e8f;&#x5c;work&#x5c;luanchuan3sync&#x5c;tiemStamp.sql</sqlfilename>
@@ -238,26 +254,41 @@
       <xloc>282</xloc>
       <yloc>257</yloc>
       </entry>
+    <entry>
+      <name>riverTrans</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;rivertrans.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>604</xloc>
+      <yloc>245</yloc>
+      </entry>
   </entries>
   <hops>
-    <hop>
-      <from>deletetarget</from>
-      <to>&#x8f6c;&#x6362; 2</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>&#x8f6c;&#x6362; 2</from>
-      <to>updatetimestamp</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
     <hop>
       <from>updatetimestamp</from>
       <to>&#x6210;&#x529f;</to>
@@ -293,6 +324,33 @@
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>riverTrans</from>
+      <to>updatetimestamp</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>deletetarget</from>
+      <to>&#x8f6c;&#x6362; 2</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>&#x8f6c;&#x6362; 2</from>
+      <to>riverTrans</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
     </hop>
   </hops>
   <notepads>
