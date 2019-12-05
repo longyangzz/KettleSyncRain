@@ -191,8 +191,8 @@
       <type>SPECIAL</type>
       <start>Y</start>
       <dummy>N</dummy>
-      <repeat>N</repeat>
-      <schedulerType>0</schedulerType>
+      <repeat>Y</repeat>
+      <schedulerType>1</schedulerType>
       <intervalSeconds>0</intervalSeconds>
       <intervalMinutes>10</intervalMinutes>
       <hour>12</hour>

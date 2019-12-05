@@ -6,6 +6,7 @@
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
+    <trans_status>0</trans_status>
     <directory>&#x2f;</directory>
     <parameters>
     </parameters>
@@ -54,7 +55,7 @@
     <feedback_size>50000</feedback_size>
     <using_thread_priorities>Y</using_thread_priorities>
     <shared_objects_file/>
-    <capture_step_performance>N</capture_step_performance>
+    <capture_step_performance>Y</capture_step_performance>
     <step_performance_capturing_delay>1000</step_performance_capturing_delay>
     <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
     <dependencies>
@@ -144,9 +145,9 @@
   <hop> <from>&#x5408;&#x5e76;&#x8bb0;&#x5f55;</from><to>Switch &#x2f; Case</to><enabled>Y</enabled> </hop>
   <hop> <from>Switch &#x2f; Case</from><to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;</to><enabled>Y</enabled> </hop>
   <hop> <from>Switch &#x2f; Case</from><to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29; 2</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29; 2</from><to>&#x8868;&#x8f93;&#x51fa;</to><enabled>Y</enabled> </hop>
   <hop> <from>Switch &#x2f; Case</from><to>&#x66f4;&#x65b0;</to><enabled>Y</enabled> </hop>
   <hop> <from>Switch &#x2f; Case</from><to>&#x5220;&#x9664;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29; 2</from><to>&#x8868;&#x8f93;&#x51fa;</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>Switch &#x2f; Case</name>
@@ -192,7 +193,7 @@
            <schema_name/>
            </partitioning>
     <connection>HSFXDB</connection>
-    <sql>SELECT t1.STCD,t1.TM,isnull&#x28;t1.DRP, 0&#x29; as DRP, isnull&#x28;t1.INTV, 0.1&#x29; as INTV &#xd;&#xa;  FROM &#x5b;dbo&#x5d;.&#x5b;ST_PPTN_R&#x5d; t1 left join  ST_STBPRP_B t2 on t1.STCD &#x3d; t2.STCD where  t2.ADDVCD like &#x27;410324&#x25;&#x27; and t1.TM &#x3e;&#x3d; &#x27;&#x24;&#x7b;TIME_STAMP&#x7d;&#x27;&#x3b;</sql>
+    <sql>SELECT t1.STCD,t1.TM,t1.DRP, t1.INTV &#xd;&#xa;  FROM &#x5b;dbo&#x5d;.&#x5b;ST_PPTN_R&#x5d; t1 left join  ST_STBPRP_B t2 on t1.STCD &#x3d; t2.STCD where  t2.ADDVCD like &#x27;410324&#x25;&#x27;  and t1.INTV&#x3d;0.1 AND t1.DRP&#x3e;0 and t1.TM &#x3e;&#x3d; &#x27;&#x24;&#x7b;TIME_STAMP&#x7d;&#x27;&#x3b;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -218,7 +219,7 @@
            <schema_name/>
            </partitioning>
     <connection>target</connection>
-    <sql>SELECT STCD,TM,isnull&#x28;DRP,0&#x29; as DRP,isnull&#x28;INTV,0&#x29; as INTV &#xd;&#xa;FROM ST_PPTN_R &#xd;&#xa;where TM&#x3e;&#x3d; &#x27;&#x24;&#x7b;TIME_STAMP&#x7d;&#x27;&#x3b;</sql>
+    <sql>SELECT STCD,TM,DRP,INTV &#xd;&#xa;FROM ST_PPTN_R &#xd;&#xa;where tm &#x3e;&#x3d; &#x27;&#x24;&#x7b;TIME_STAMP&#x7d;&#x27;&#x3b;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
