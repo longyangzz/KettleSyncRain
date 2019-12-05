@@ -98,6 +98,22 @@
     </attributes>
   </connection>
   <connection>
+    <name>NativeDB</name>
+    <server>192.168.15.133</server>
+    <type>MSSQL</type>
+    <access>Native</access>
+    <database>HSFX_HNDB_TEST</database>
+    <port>1433</port>
+    <username>sa</username>
+    <password>Encrypted 2be98afc86aa7f28cb81fb6508cc2fe83</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>PORT_NUMBER</code><attribute>1433</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
     <name>target</name>
     <server>192.168.15.133</server>
     <type>MSSQL</type>
@@ -133,91 +149,6 @@
   <hop> <from>Switch &#x2f; Case</from><to>&#x5220;&#x9664;</to><enabled>Y</enabled> </hop>
   </order>
   <step>
-    <name>source&#x8868;&#x8f93;&#x5165;</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>HSFXDB</connection>
-    <sql>SELECT t1.STCD,t1.TM,t1.DRP,t1.INTV &#xd;&#xa;  FROM &#x5b;dbo&#x5d;.&#x5b;ST_PPTN_R&#x5d; t1 left join  ST_STBPRP_B t2 on t1.STCD &#x3d; t2.STCD where  t2.ADDVCD like &#x27;410324&#x25;&#x27; and t1.TM &#x3e;&#x3d; &#x27;&#x24;&#x7b;TIME_STAMP&#x7d;&#x27;&#x3b;</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>Y</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>124</xloc>
-      <yloc>142</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>target&#x8868;&#x8f93;&#x5165;</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>target</connection>
-    <sql>SELECT STCD,TM,DRP,INTV &#xd;&#xa;FROM ST_PPTN_R &#xd;&#xa;where TM&#x3e;&#x3d; &#x27;&#x24;&#x7b;TIME_STAMP&#x7d;&#x27;&#x3b;</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>Y</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>135</xloc>
-      <yloc>349</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>&#x5408;&#x5e76;&#x8bb0;&#x5f55;</name>
-    <type>MergeRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <keys>
-      <key>TM</key>
-    </keys>
-    <values>
-      <value>STCD</value>
-      <value>TM</value>
-      <value>DRP</value>
-      <value>INTV</value>
-    </values>
-<flag_field>flagfield</flag_field>
-<reference>target&#x8868;&#x8f93;&#x5165;</reference>
-<compare>source&#x8868;&#x8f93;&#x5165;</compare>
-    <compare>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>308</xloc>
-      <yloc>260</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
     <name>Switch &#x2f; Case</name>
     <type>SwitchCase</type>
     <description/>
@@ -245,6 +176,174 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>443</xloc>
       <yloc>264</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>source&#x8868;&#x8f93;&#x5165;</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>HSFXDB</connection>
+    <sql>SELECT t1.STCD,t1.TM,isnull&#x28;t1.DRP, 0&#x29; as DRP, isnull&#x28;t1.INTV, 0.1&#x29; as INTV &#xd;&#xa;  FROM &#x5b;dbo&#x5d;.&#x5b;ST_PPTN_R&#x5d; t1 left join  ST_STBPRP_B t2 on t1.STCD &#x3d; t2.STCD where  t2.ADDVCD like &#x27;410324&#x25;&#x27; and t1.TM &#x3e;&#x3d; &#x27;&#x24;&#x7b;TIME_STAMP&#x7d;&#x27;&#x3b;</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>Y</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>124</xloc>
+      <yloc>142</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>target&#x8868;&#x8f93;&#x5165;</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>target</connection>
+    <sql>SELECT STCD,TM,isnull&#x28;DRP,0&#x29; as DRP,isnull&#x28;INTV,0&#x29; as INTV &#xd;&#xa;FROM ST_PPTN_R &#xd;&#xa;where TM&#x3e;&#x3d; &#x27;&#x24;&#x7b;TIME_STAMP&#x7d;&#x27;&#x3b;</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>Y</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>135</xloc>
+      <yloc>349</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>&#x5220;&#x9664;</name>
+    <type>Delete</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>target</connection>
+    <commit>1000</commit>
+    <lookup>
+      <schema/>
+      <table>ST_PPTN_R</table>
+      <key>
+        <name>STCD</name>
+        <field>STCD</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>TM</name>
+        <field>TM</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+    </lookup>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>612</xloc>
+      <yloc>428</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>&#x5408;&#x5e76;&#x8bb0;&#x5f55;</name>
+    <type>MergeRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <keys>
+      <key>TM</key>
+      <key>STCD</key>
+    </keys>
+    <values>
+      <value>STCD</value>
+      <value>TM</value>
+      <value>DRP</value>
+      <value>INTV</value>
+    </values>
+<flag_field>flagfield</flag_field>
+<reference>target&#x8868;&#x8f93;&#x5165;</reference>
+<compare>source&#x8868;&#x8f93;&#x5165;</compare>
+    <compare>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>308</xloc>
+      <yloc>260</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>&#x66f4;&#x65b0;</name>
+    <type>Update</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>target</connection>
+    <skip_lookup>Y</skip_lookup>
+    <commit>1000</commit>
+    <use_batch>Y</use_batch>
+    <error_ignored>N</error_ignored>
+    <ignore_flag_field/>
+    <lookup>
+      <schema/>
+      <table>ST_PPTN_R</table>
+      <value>
+        <name>STCD</name>
+        <rename>STCD</rename>
+        </value>
+      <value>
+        <name>TM</name>
+        <rename>TM</rename>
+        </value>
+      <value>
+        <name>DRP</name>
+        <rename>DRP</rename>
+        </value>
+      <value>
+        <name>INTV</name>
+        <rename>INTV</rename>
+        </value>
+      </lookup>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>602</xloc>
+      <yloc>266</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -337,76 +436,6 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>597</xloc>
       <yloc>128</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>&#x66f4;&#x65b0;</name>
-    <type>Update</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>target</connection>
-    <skip_lookup>Y</skip_lookup>
-    <commit>1000</commit>
-    <use_batch>Y</use_batch>
-    <error_ignored>N</error_ignored>
-    <ignore_flag_field/>
-    <lookup>
-      <schema/>
-      <table>ST_PPTN_R</table>
-      <value>
-        <name>STCD</name>
-        <rename>STCD</rename>
-        </value>
-      <value>
-        <name>TM</name>
-        <rename>TM</rename>
-        </value>
-      <value>
-        <name>DRP</name>
-        <rename>DRP</rename>
-        </value>
-      <value>
-        <name>INTV</name>
-        <rename>INTV</rename>
-        </value>
-      </lookup>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>602</xloc>
-      <yloc>266</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>&#x5220;&#x9664;</name>
-    <type>Delete</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>target</connection>
-    <commit>100</commit>
-    <lookup>
-      <schema/>
-      <table>ST_PPTN_R</table>
-    </lookup>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>612</xloc>
-      <yloc>428</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

@@ -193,7 +193,7 @@
            <schema_name/>
            </partitioning>
     <connection>HSFXDB</connection>
-    <sql>SELECT t1.STCD,t1.TM,t1.Z,t1.Q&#xd;&#xa;  FROM &#x5b;dbo&#x5d;.&#x5b;ST_RIVER_R&#x5d; t1 left join  ST_STBPRP_B t2 on t1.STCD &#x3d; t2.STCD where  t2.ADDVCD like &#x27;410324&#x25;&#x27; and t1.TM &#x3e;&#x3d; &#x27;&#x24;&#x7b;TIME_STAMP&#x7d;&#x27;&#x3b;</sql>
+    <sql>SELECT t1.STCD,t1.TM,isnull&#x28;t1.Z, 0&#x29; as Z,isnull&#x28;t1.Q, 0&#x29; as Q&#xd;&#xa;  FROM &#x5b;dbo&#x5d;.&#x5b;ST_RIVER_R&#x5d; t1 left join  ST_STBPRP_B t2 on t1.STCD &#x3d; t2.STCD where  t2.ADDVCD like &#x27;410324&#x25;&#x27; and t1.TM &#x3e;&#x3d; &#x27;&#x24;&#x7b;TIME_STAMP&#x7d;&#x27;&#x3b;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -219,7 +219,7 @@
            <schema_name/>
            </partitioning>
     <connection>target</connection>
-    <sql>SELECT t1.STCD,t1.TM,t1.Z,t1.Q&#xd;&#xa;FROM ST_RIVER_R t1&#xd;&#xa;where TM&#x3e;&#x3d; &#x27;&#x24;&#x7b;TIME_STAMP&#x7d;&#x27;&#x3b;</sql>
+    <sql>SELECT t1.STCD,t1.TM,isnull&#x28;t1.Z,0&#x29; as Z,isnull&#x28;t1.Q,0&#x29; as Q&#xd;&#xa;FROM ST_RIVER_R t1&#xd;&#xa;where TM&#x3e;&#x3d; &#x27;&#x24;&#x7b;TIME_STAMP&#x7d;&#x27;&#x3b;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
