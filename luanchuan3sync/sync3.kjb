@@ -89,6 +89,7 @@
     </attributes>
   </connection>
     <slaveservers>
+         <slaveserver><name>slaverserver</name><hostname>222.141.18.211</hostname><port>8082</port><webAppName/><username>cluster</username><password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password><proxy_hostname/><proxy_port/><non_proxy_hosts/><master>N</master></slaveserver>
     </slaveservers>
 <job-log-table><connection/>
 <schema/>
