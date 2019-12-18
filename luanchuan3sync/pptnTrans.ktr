@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>synczhuanhuan</name>
+    <name>pptnTrans</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -74,14 +74,14 @@
   <notepads>
   </notepads>
   <connection>
-    <name>HSFXDB</name>
-    <server>10.41.24.4</server>
+    <name>source</name>
+    <server>111.198.29.34</server>
     <type>MSSQL</type>
     <access>Native</access>
-    <database>HNYJ_GIS_DB</database>
-    <port>1433</port>
-    <username>sa</username>
-    <password>Encrypted 2be98afc86aa7f2e4cb03bd7bfec3fd89</password>
+    <database>HSFX_BJDB_TEST</database>
+    <port>3348</port>
+    <username>BJTEST</username>
+    <password>Encrypted 2befcc6a60dc49a91aa17a9508cc2fe88</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -90,39 +90,23 @@
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
       <attribute><code>MSSQL_DOUBLE_DECIMAL_SEPARATOR</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>1433</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>3348</attribute></attribute>
       <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
-      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
-      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
   <connection>
-    <name>NativeDB</name>
-    <server>192.168.15.133</server>
-    <type>MSSQL</type>
-    <access>Native</access>
-    <database>HSFX_HNDB_TEST</database>
-    <port>1433</port>
-    <username>sa</username>
-    <password>Encrypted 2be98afc86aa7f28cb81fb6508cc2fe83</password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <attributes>
-      <attribute><code>PORT_NUMBER</code><attribute>1433</attribute></attribute>
-    </attributes>
-  </connection>
-  <connection>
     <name>target</name>
-    <server>192.168.15.133</server>
+    <server>192.168.1.222</server>
     <type>MSSQL</type>
     <access>Native</access>
-    <database>HSFX_HNDB_TEST</database>
+    <database>HSFX_BJDB_TEST</database>
     <port>1433</port>
     <username>sa</username>
-    <password>Encrypted 2be98afc86aa7f28cb81fb6508cc2fe83</password>
+    <password>Encrypted 2be98afc86aa7f2e4cb79aa73d285a4d0</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -192,7 +176,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>HSFXDB</connection>
+    <connection>source</connection>
     <sql>SELECT t1.STCD,t1.TM,t1.DRP, t1.INTV &#xd;&#xa;  FROM &#x5b;dbo&#x5d;.&#x5b;ST_PPTN_R&#x5d; t1 left join  ST_STBPRP_B t2 on t1.STCD &#x3d; t2.STCD where  t2.ADDVCD like &#x27;410324&#x25;&#x27;  and t1.INTV&#x3d;0.1 AND t1.DRP&#x3e;0 and t1.TM &#x3e;&#x3d; &#x27;&#x24;&#x7b;TIME_STAMP&#x7d;&#x27;&#x3b;</sql>
     <limit>0</limit>
     <lookup/>
