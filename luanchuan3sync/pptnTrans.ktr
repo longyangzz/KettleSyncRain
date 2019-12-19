@@ -177,7 +177,7 @@
            <schema_name/>
            </partitioning>
     <connection>source</connection>
-    <sql>SELECT t1.STCD,t1.TM,t1.DRP, t1.INTV &#xd;&#xa;  FROM &#x5b;dbo&#x5d;.&#x5b;ST_PPTN_R&#x5d; t1 left join  ST_STBPRP_B t2 on t1.STCD &#x3d; t2.STCD where  t2.ADDVCD like &#x27;410324&#x25;&#x27;  and t1.INTV&#x3d;0.1 AND t1.DRP&#x3e;0 and t1.TM &#x3e;&#x3d; &#x27;&#x24;&#x7b;TIME_STAMP&#x7d;&#x27;&#x3b;</sql>
+    <sql>SELECT t1.STCD,t1.TM,t1.DRP, t1.INTV &#xd;&#xa;  FROM &#x5b;dbo&#x5d;.&#x5b;ST_PPTN_R&#x5d; t1 left join  ST_STBPRP_B t2 on t1.STCD &#x3d; t2.STCD where  t2.ADDVCD like &#x27;11&#x25;&#x27;  and t1.INTV&#x3e;0 AND t1.DRP&#x3e;0 and t1.TM &#x3e;&#x3d; &#x27;&#x24;&#x7b;TIME_STAMP&#x7d;&#x27;&#x3b;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>

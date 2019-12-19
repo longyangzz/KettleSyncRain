@@ -308,8 +308,8 @@
       <to>river&#x6c34;&#x6587;&#x6570;&#x636e;&#x8f6c;&#x6362;</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
-      <enabled>N</enabled>
-      <evaluation>Y</evaluation>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
       <unconditional>N</unconditional>
     </hop>
   </hops>
