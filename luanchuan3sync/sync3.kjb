@@ -79,7 +79,7 @@
       <name>deletetarget</name>
       <description/>
       <type>SQL</type>
-      <sql>DELETE ST_PPTN_R&#xd;&#xa;FROM&#xd;&#xa;        ST_PPTN_R&#xd;&#xa;LEFT JOIN ST_STBPRP_B ON st_pptn_r.stcd &#x3d; ST_STBPRP_B.stcd&#xd;&#xa;WHERE&#xd;&#xa;        ST_STBPRP_B.sttp &#x3d; &#x27;pp&#x27;&#xd;&#xa;AND ST_PPTN_R.TM &#x3e;&#x3d;&#x27;&#x24;&#x7b;TIME_STAMP&#x7d;&#x27;&#xd;&#xa;&#xd;&#xa;DELETE ST_RIVER_R&#xd;&#xa;FROM&#xd;&#xa;        ST_RIVER_R&#xd;&#xa;LEFT JOIN ST_STBPRP_B ON ST_RIVER_R.stcd &#x3d; ST_STBPRP_B.stcd&#xd;&#xa;WHERE&#xd;&#xa;        ST_STBPRP_B.sttp &#x3d; &#x27;ZZ&#x27; OR ST_STBPRP_B.sttp &#x3d; &#x27;ZQ&#x27;&#xd;&#xa;AND ST_RIVER_R.TM &#x3e;&#x3d;&#x27;&#x24;&#x7b;TIME_STAMP&#x7d;&#x27;</sql>
+      <sql>DELETE ST_PPTN_R&#xd;&#xa;FROM&#xd;&#xa;        ST_PPTN_R&#xd;&#xa;LEFT JOIN ST_STBPRP_B ON st_pptn_r.stcd &#x3d; ST_STBPRP_B.stcd&#xd;&#xa;WHERE&#xd;&#xa;        ST_STBPRP_B.sttp &#x3d; &#x27;pp&#x27;&#xd;&#xa;AND ST_PPTN_R.TM &#x3e;&#x27;&#x24;&#x7b;TIME_STAMP&#x7d;&#x27;&#xd;&#xa;&#xd;&#xa;DELETE ST_RIVER_R&#xd;&#xa;FROM&#xd;&#xa;        ST_RIVER_R&#xd;&#xa;LEFT JOIN ST_STBPRP_B ON ST_RIVER_R.stcd &#x3d; ST_STBPRP_B.stcd&#xd;&#xa;WHERE&#xd;&#xa;        ST_STBPRP_B.sttp &#x3d; &#x27;ZZ&#x27; OR ST_STBPRP_B.sttp &#x3d; &#x27;ZQ&#x27;&#xd;&#xa;AND ST_RIVER_R.TM &#x3e;&#x27;&#x24;&#x7b;TIME_STAMP&#x7d;&#x27;</sql>
       <useVariableSubstitution>T</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
@@ -213,7 +213,7 @@
       <sqlfilename>D&#x3a;&#x5c;&#x6570;&#x636e;&#x540c;&#x6b65;&#x7a0b;&#x5e8f;&#x5c;work&#x5c;luanchuan3sync&#x5c;tiemStamp.sql</sqlfilename>
       <sendOneStatement>F</sendOneStatement>
       <connection>target</connection>
-      <parallel>Y</parallel>
+      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>282</xloc>
@@ -356,8 +356,8 @@
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
+      <evaluation>N</evaluation>
+      <unconditional>Y</unconditional>
     </hop>
   </hops>
   <notepads>
