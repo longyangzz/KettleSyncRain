@@ -266,8 +266,8 @@
            <schema_name/>
            </partitioning>
     <keys>
-      <key>TM</key>
       <key>STCD</key>
+      <key>TM</key>
     </keys>
     <values>
       <value>STCD</value>
