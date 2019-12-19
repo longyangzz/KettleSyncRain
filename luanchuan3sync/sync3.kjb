@@ -13,12 +13,12 @@
     <parameters>
         <parameter>
             <name>ROLL_BACK_DAYS</name>
-            <default_value>1</default_value>
-            <description/>
+            <default_value>-10</default_value>
+            <description>&#x7b2c;&#x4e00;&#x6b21;&#x540c;&#x6b65;&#x65f6;&#x5019;&#x524d;&#x63a8;&#x5929;&#x6570;</description>
         </parameter>
         <parameter>
             <name>ROLL_BACK_HOURS</name>
-            <default_value>1</default_value>
+            <default_value>-1</default_value>
             <description/>
         </parameter>
     </parameters>
@@ -202,8 +202,8 @@
       <name>createEtl-temp</name>
       <description/>
       <type>SQL</type>
-      <sql>if not exists&#x28;select null from sysobjects where xtype&#x3d;&#x27;u&#x27; and name &#x3d;&#x27;etl_temp&#x27;&#x29;&#xd;&#xa;    begin&#xd;&#xa;      &#x2f;&#x2a;&#x5efa;&#x8868;sql&#x811a;&#x672c;&#x2a;&#x2f;&#xd;&#xa;      create table etl_temp &#x28;id int primary key,time_stamp datetime&#x29;&#xd;&#xa;	  INSERT INTO etl_temp &#x28;id,time_stamp&#x29; VALUES &#x28;1, DATEADD&#x28;DD ,-4, getdate&#x28;&#x29;&#x29; &#x29;&#xd;&#xa;    end</sql>
-      <useVariableSubstitution>F</useVariableSubstitution>
+      <sql>if not exists&#x28;select null from sysobjects where xtype&#x3d;&#x27;u&#x27; and name &#x3d;&#x27;etl_temp&#x27;&#x29;&#xd;&#xa;    begin&#xd;&#xa;      &#x2f;&#x2a;&#x5efa;&#x8868;sql&#x811a;&#x672c;&#x2a;&#x2f;&#xd;&#xa;      create table etl_temp &#x28;id int primary key,time_stamp datetime&#x29;&#xd;&#xa;	  INSERT INTO etl_temp &#x28;id,time_stamp&#x29; VALUES &#x28;1, DATEADD&#x28;DD ,&#x24;&#x7b;ROLL_BACK_DAYS&#x7d;, getdate&#x28;&#x29;&#x29; &#x29;&#xd;&#xa;    end</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename>D&#x3a;&#x5c;&#x6570;&#x636e;&#x540c;&#x6b65;&#x7a0b;&#x5e8f;&#x5c;work&#x5c;luanchuan3sync&#x5c;tiemStamp.sql</sqlfilename>
       <sendOneStatement>F</sendOneStatement>
