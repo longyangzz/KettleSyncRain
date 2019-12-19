@@ -177,7 +177,7 @@
            <schema_name/>
            </partitioning>
     <connection>source</connection>
-    <sql>SELECT t1.STCD,t1.TM,t1.DRP, t1.INTV &#xd;&#xa;  FROM &#x5b;dbo&#x5d;.&#x5b;ST_PPTN_R&#x5d; t1 left join  ST_STBPRP_B t2 on t1.STCD &#x3d; t2.STCD where  t2.ADDVCD like &#x27;410324&#x25;&#x27;  and t1.INTV&#x3d;0.1 AND t1.DRP&#x3e;0 and t1.TM &#x3e;&#x3d; &#x27;&#x24;&#x7b;TIME_STAMP&#x7d;&#x27;&#x3b;</sql>
+    <sql>SELECT t1.STCD,t1.TM,t1.RZ,t1.INQ,t1.W,t1.OTQ,t1.RWPTN,t1.BLRZ&#xd;&#xa;  FROM &#x5b;dbo&#x5d;.&#x5b;ST_RSVR_R&#x5d; t1 left join  ST_STBPRP_B t2 on t1.STCD &#x3d; t2.STCD where t1.TM &#x3e;&#x3d; &#x27;&#x24;&#x7b;TIME_STAMP&#x7d;&#x27;&#x3b;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -203,7 +203,7 @@
            <schema_name/>
            </partitioning>
     <connection>target</connection>
-    <sql>SELECT STCD,TM,DRP,INTV &#xd;&#xa;FROM ST_PPTN_R &#xd;&#xa;where tm &#x3e;&#x3d; &#x27;&#x24;&#x7b;TIME_STAMP&#x7d;&#x27;&#x3b;</sql>
+    <sql>SELECT STCD,TM,RZ,INQ,W,OTQ,RWPTN,BLRZ&#xd;&#xa;FROM ST_RSVR_R &#xd;&#xa;where tm &#x3e;&#x3d; &#x27;&#x24;&#x7b;TIME_STAMP&#x7d;&#x27;&#x3b;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -232,7 +232,7 @@
     <commit>1000</commit>
     <lookup>
       <schema/>
-      <table>ST_PPTN_R</table>
+      <table>ST_RSVR_R</table>
       <key>
         <name>STCD</name>
         <field>STCD</field>
@@ -272,8 +272,12 @@
     <values>
       <value>STCD</value>
       <value>TM</value>
-      <value>DRP</value>
-      <value>INTV</value>
+      <value>RZ</value>
+      <value>INQ</value>
+      <value>W</value>
+      <value>OTQ</value>
+      <value>RWPTN</value>
+      <value>BLRZ</value>
     </values>
 <flag_field>flagfield</flag_field>
 <reference>target&#x8868;&#x8f93;&#x5165;</reference>
@@ -307,7 +311,7 @@
     <ignore_flag_field/>
     <lookup>
       <schema/>
-      <table>ST_PPTN_R</table>
+      <table>ST_RSVR_R</table>
       <value>
         <name>STCD</name>
         <rename>STCD</rename>
@@ -317,12 +321,32 @@
         <rename>TM</rename>
         </value>
       <value>
-        <name>DRP</name>
-        <rename>DRP</rename>
+        <name>RZ</name>
+        <rename>RZ</rename>
         </value>
       <value>
-        <name>INTV</name>
-        <rename>INTV</rename>
+        <name>INQ</name>
+        <rename>INQ</rename>
+        </value>
+      <value>
+        <name>W</name>
+        <rename>W</rename>
+        </value>
+      <value>
+        <name>OTQ</name>
+        <rename>OTQ</rename>
+        </value>
+      <value>
+        <name>RWPTN</name>
+        <rename>RWPTN</rename>
+        </value>
+      <value>
+        <name>BLRZ</name>
+        <rename>BLRZ</rename>
+        </value>
+      <value>
+        <name>flagfield</name>
+        <rename>flagfield</rename>
         </value>
       </lookup>
      <cluster_schema/>
@@ -384,7 +408,7 @@
            </partitioning>
     <connection>target</connection>
     <schema/>
-    <table>ST_PPTN_R</table>
+    <table>ST_RSVR_R</table>
     <commit>1000</commit>
     <truncate>N</truncate>
     <ignore_errors>N</ignore_errors>
@@ -409,12 +433,28 @@
           <stream_name>TM</stream_name>
         </field>
         <field>
-          <column_name>DRP</column_name>
-          <stream_name>DRP</stream_name>
+          <column_name>RZ</column_name>
+          <stream_name>RZ</stream_name>
         </field>
         <field>
-          <column_name>INTV</column_name>
-          <stream_name>INTV</stream_name>
+          <column_name>INQ</column_name>
+          <stream_name>INQ</stream_name>
+        </field>
+        <field>
+          <column_name>W</column_name>
+          <stream_name>W</stream_name>
+        </field>
+        <field>
+          <column_name>OTQ</column_name>
+          <stream_name>OTQ</stream_name>
+        </field>
+        <field>
+          <column_name>RWPTN</column_name>
+          <stream_name>RWPTN</stream_name>
+        </field>
+        <field>
+          <column_name>BLRZ</column_name>
+          <stream_name>BLRZ</stream_name>
         </field>
     </fields>
      <cluster_schema/>
