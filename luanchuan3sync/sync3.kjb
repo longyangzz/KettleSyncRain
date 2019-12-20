@@ -18,7 +18,7 @@
         </parameter>
         <parameter>
             <name>ROLL_BACK_DAYS</name>
-            <default_value>-1</default_value>
+            <default_value>-10</default_value>
             <description>&#x7b2c;&#x4e00;&#x6b21;&#x540c;&#x6b65;&#x65f6;&#x5019;&#x524d;&#x63a8;&#x5929;&#x6570;</description>
         </parameter>
         <parameter>
