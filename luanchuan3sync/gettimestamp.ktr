@@ -75,13 +75,13 @@
   </notepads>
   <connection>
     <name>target</name>
-    <server>192.168.15.133</server>
+    <server>192.168.1.222</server>
     <type>MSSQL</type>
     <access>Native</access>
-    <database>HSFX_HNDB_TEST</database>
+    <database>HSFX_BJDB_TEST</database>
     <port>1433</port>
     <username>sa</username>
-    <password>Encrypted 2be98afc86aa7f28cb81fb6508cc2fe83</password>
+    <password>Encrypted 2be98afc86aa7f2e4cb79aa73d285a4d0</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -113,7 +113,7 @@
            <schema_name/>
            </partitioning>
     <connection>target</connection>
-    <sql>select time_stamp from etl_temp where id&#x3d;&#x27;1&#x27;</sql>
+    <sql>select time_stamp,time_stamp_river,time_stamp_rsvr from etl_temp where id&#x3d;&#x27;1&#x27;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -142,6 +142,18 @@
       <field>
         <field_name>time_stamp</field_name>
         <variable_name>TIME_STAMP</variable_name>
+        <variable_type>ROOT_JOB</variable_type>
+        <default_value/>
+        </field>
+      <field>
+        <field_name>time_stamp_river</field_name>
+        <variable_name>TIME_STAMP_RIVER</variable_name>
+        <variable_type>ROOT_JOB</variable_type>
+        <default_value/>
+        </field>
+      <field>
+        <field_name>time_stamp_rsvr</field_name>
+        <variable_name>TIME_STAMP_RSVR</variable_name>
         <variable_type>ROOT_JOB</variable_type>
         <default_value/>
         </field>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <job>
-  <name>sync3</name>
+  <name>template</name>
     <description/>
     <extended_description/>
     <job_version/>
@@ -79,7 +79,7 @@
       <name>deletetarget</name>
       <description/>
       <type>SQL</type>
-      <sql>DELETE ST_PPTN_R&#xd;&#xa;FROM&#xd;&#xa;        ST_PPTN_R&#xd;&#xa;LEFT JOIN ST_STBPRP_B ON st_pptn_r.stcd &#x3d; ST_STBPRP_B.stcd&#xd;&#xa;WHERE&#xd;&#xa;        ST_STBPRP_B.sttp &#x3d; &#x27;pp&#x27;&#xd;&#xa;AND ST_PPTN_R.TM &#x3e;&#x27;&#x24;&#x7b;TIME_STAMP&#x7d;&#x27;&#xd;&#xa;&#xd;&#xa;DELETE ST_RIVER_R&#xd;&#xa;FROM&#xd;&#xa;        ST_RIVER_R&#xd;&#xa;LEFT JOIN ST_STBPRP_B ON ST_RIVER_R.stcd &#x3d; ST_STBPRP_B.stcd&#xd;&#xa;WHERE&#xd;&#xa;        ST_STBPRP_B.sttp &#x3d; &#x27;ZZ&#x27; OR ST_STBPRP_B.sttp &#x3d; &#x27;ZQ&#x27;&#xd;&#xa;AND ST_RIVER_R.TM &#x3e;&#x27;&#x24;&#x7b;TIME_STAMP_RIVER&#x7d;&#x27;&#xd;&#xa;&#xd;&#xa;DELETE ST_RSVR_R&#xd;&#xa;FROM&#xd;&#xa;        ST_RSVR_R&#xd;&#xa;LEFT JOIN ST_STBPRP_B ON ST_RSVR_R.stcd &#x3d; ST_STBPRP_B.stcd&#xd;&#xa;WHERE&#xd;&#xa;        ST_STBPRP_B.sttp &#x3d; &#x27;RR&#x27;&#xd;&#xa;AND ST_RSVR_R.TM &#x3e;&#x27;&#x24;&#x7b;TIME_STAMP_RSVR&#x7d;&#x27;</sql>
+      <sql>DELETE ST_PPTN_R&#xd;&#xa;FROM&#xd;&#xa;        ST_PPTN_R&#xd;&#xa;LEFT JOIN ST_STBPRP_B ON st_pptn_r.stcd &#x3d; ST_STBPRP_B.stcd&#xd;&#xa;WHERE&#xd;&#xa;        ST_STBPRP_B.sttp &#x3d; &#x27;pp&#x27;&#xd;&#xa;AND ST_PPTN_R.TM &#x3e;&#x27;&#x24;&#x7b;TIME_STAMP&#x7d;&#x27;&#xd;&#xa;&#xd;&#xa;DELETE ST_RIVER_R&#xd;&#xa;FROM&#xd;&#xa;        ST_RIVER_R&#xd;&#xa;LEFT JOIN ST_STBPRP_B ON ST_RIVER_R.stcd &#x3d; ST_STBPRP_B.stcd&#xd;&#xa;WHERE&#xd;&#xa;        ST_STBPRP_B.sttp &#x3d; &#x27;ZZ&#x27; OR ST_STBPRP_B.sttp &#x3d; &#x27;ZQ&#x27;&#xd;&#xa;AND ST_RIVER_R.TM &#x3e;&#x27;&#x24;&#x7b;TIME_STAMP&#x7d;&#x27;</sql>
       <useVariableSubstitution>T</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
@@ -128,7 +128,7 @@
       <name>updatetimestamp&#x540c;&#x6b65;&#x540e;&#x66f4;&#x65b0;&#x65f6;&#x95f4;</name>
       <description/>
       <type>SQL</type>
-      <sql>update etl_temp set time_stamp&#x3d; &#x28;SELECT top 1 TM FROM ST_PPTN_R ORDER BY TM DESC&#x29; where id&#x3d;&#x27;1&#x27;&#x3b;&#xd;&#xa;update etl_temp set time_stamp_river&#x3d; &#x28;SELECT top 1 TM FROM ST_RIVER_R ORDER BY TM DESC&#x29; where id&#x3d;&#x27;1&#x27;&#x3b;&#xd;&#xa;update etl_temp set time_stamp_rsvr&#x3d; &#x28;SELECT top 1 TM FROM ST_RSVR_R ORDER BY TM DESC&#x29; where id&#x3d;&#x27;1&#x27;&#x3b;</sql>
+      <sql>update etl_temp set time_stamp&#x3d; &#x28;SELECT top 1 TM FROM ST_PPTN_R ORDER BY TM DESC&#x29; where id&#x3d;&#x27;1&#x27;&#x3b;</sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
@@ -207,7 +207,7 @@
       <name>createEtl-temp</name>
       <description/>
       <type>SQL</type>
-      <sql>if not exists&#x28;select null from sysobjects where xtype&#x3d;&#x27;u&#x27; and name &#x3d;&#x27;etl_temp&#x27;&#x29;&#xd;&#xa;    begin&#xd;&#xa;      &#x2f;&#x2a;&#x5efa;&#x8868;sql&#x811a;&#x672c;&#x2a;&#x2f;&#xd;&#xa;      create table etl_temp &#x28;id int primary key,time_stamp datetime,time_stamp_river datetime,time_stamp_rsvr datetime&#x29;&#xd;&#xa;	  INSERT INTO etl_temp &#x28;id,time_stamp,time_stamp_river, time_stamp_rsvr&#x29; VALUES &#x28;1, &#xd;&#xa;			DATEADD&#x28;DD ,&#x24;&#x7b;ROLL_BACK_DAYS&#x7d;, getdate&#x28;&#x29;&#x29;,&#xd;&#xa;			DATEADD&#x28;DD ,&#x24;&#x7b;ROLL_BACK_DAYS&#x7d;, getdate&#x28;&#x29;&#x29; ,&#xd;&#xa;			DATEADD&#x28;DD ,&#x24;&#x7b;ROLL_BACK_DAYS&#x7d;, getdate&#x28;&#x29;&#x29;  &#xd;&#xa;			&#x29;&#xd;&#xa;    end</sql>
+      <sql>if not exists&#x28;select null from sysobjects where xtype&#x3d;&#x27;u&#x27; and name &#x3d;&#x27;etl_temp&#x27;&#x29;&#xd;&#xa;    begin&#xd;&#xa;      &#x2f;&#x2a;&#x5efa;&#x8868;sql&#x811a;&#x672c;&#x2a;&#x2f;&#xd;&#xa;      create table etl_temp &#x28;id int primary key,time_stamp datetime&#x29;&#xd;&#xa;	  INSERT INTO etl_temp &#x28;id,time_stamp&#x29; VALUES &#x28;1, DATEADD&#x28;DD ,&#x24;&#x7b;ROLL_BACK_DAYS&#x7d;, getdate&#x28;&#x29;&#x29; &#x29;&#xd;&#xa;    end</sql>
       <useVariableSubstitution>T</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename>D&#x3a;&#x5c;&#x6570;&#x636e;&#x540c;&#x6b65;&#x7a0b;&#x5e8f;&#x5c;work&#x5c;luanchuan3sync&#x5c;tiemStamp.sql</sqlfilename>

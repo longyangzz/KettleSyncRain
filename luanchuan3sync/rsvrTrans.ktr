@@ -131,7 +131,8 @@
   <hop> <from>Switch &#x2f; Case</from><to>new&#x65b0;&#x6570;&#x636e;&#x4e2d;&#x6709;&#x800c;&#x65e7;&#x6570;&#x636e;&#x4e2d;&#x6ca1;&#x6709;&#x7684;&#x8bb0;&#x5f55;</to><enabled>Y</enabled> </hop>
   <hop> <from>Switch &#x2f; Case</from><to>changed&#x6570;&#x636e;&#x53d1;&#x751f;&#x4e86;&#x53d8;&#x5316;</to><enabled>Y</enabled> </hop>
   <hop> <from>new&#x65b0;&#x6570;&#x636e;&#x4e2d;&#x6709;&#x800c;&#x65e7;&#x6570;&#x636e;&#x4e2d;&#x6ca1;&#x6709;&#x7684;&#x8bb0;&#x5f55;</from><to>&#x8868;&#x8f93;&#x51fa;</to><enabled>Y</enabled> </hop>
-  <hop> <from>Switch &#x2f; Case</from><to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;</to><enabled>Y</enabled> </hop>
+  <hop> <from>Switch &#x2f; Case</from><to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;</to><enabled>N</enabled> </hop>
+  <hop> <from>Switch &#x2f; Case</from><to>delete&#x65e7;&#x6570;&#x636e;&#x4e2d;&#x6709;&#x800c;&#x65b0;&#x6570;&#x636e;&#x4e2d;&#x6ca1;&#x6709;&#x7684;&#x8bb0;&#x5f55;</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>Switch &#x2f; Case</name>
@@ -156,7 +157,7 @@
 </case><case><value>changed</value>
 <target_step>changed&#x6570;&#x636e;&#x53d1;&#x751f;&#x4e86;&#x53d8;&#x5316;</target_step>
 </case><case><value>deleted</value>
-<target_step>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;</target_step>
+<target_step>delete&#x65e7;&#x6570;&#x636e;&#x4e2d;&#x6709;&#x800c;&#x65b0;&#x6570;&#x636e;&#x4e2d;&#x6ca1;&#x6709;&#x7684;&#x8bb0;&#x5f55;</target_step>
 </case><case><value>identical</value>
 <target_step>identical&#x65e7;&#x6570;&#x636e;&#x548c;&#x65b0;&#x6570;&#x636e;&#x4e00;&#x6837;</target_step>
 </case></cases>     <cluster_schema/>
@@ -259,8 +260,8 @@
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>450</xloc>
-      <yloc>593</yloc>
+      <xloc>869</xloc>
+      <yloc>332</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -315,7 +316,7 @@
            <schema_name/>
            </partitioning>
     <connection>source</connection>
-    <sql>SELECT Rtrim&#x28;t1.STCD&#x29; as STCD,CONVERT&#x28;varchar&#x28;100&#x29;, t1.TM, 120&#x29; as TM,t1.RZ,t1.INQ,t1.W,t1.OTQ,t1.RWPTN,t1.BLRZ&#xd;&#xa;  FROM &#x5b;dbo&#x5d;.&#x5b;ST_RSVR_R&#x5d; t1 left join  ST_STBPRP_B t2 on t1.STCD &#x3d; t2.STCD where t1.TM &#x3e; &#x27;&#x24;&#x7b;TIME_STAMP&#x7d;&#x27;&#x3b;</sql>
+    <sql>SELECT Rtrim&#x28;t1.STCD&#x29; as STCD,CONVERT&#x28;varchar&#x28;100&#x29;, t1.TM, 120&#x29; as TM,t1.RZ,t1.INQ,t1.W,t1.OTQ,t1.RWPTN,t1.BLRZ&#xd;&#xa;  FROM &#x5b;dbo&#x5d;.&#x5b;ST_RSVR_R&#x5d; t1 left join  ST_STBPRP_B t2 on t1.STCD &#x3d; t2.STCD where t1.TM &#x3e; &#x27;&#x24;&#x7b;TIME_STAMP_RSVR&#x7d;&#x27;&#x3b;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -341,7 +342,7 @@
            <schema_name/>
            </partitioning>
     <connection>target</connection>
-    <sql>SELECT Rtrim&#x28;STCD&#x29; as STCD,CONVERT&#x28;varchar&#x28;100&#x29;, TM, 120&#x29; as TM,RZ,INQ,W,OTQ,RWPTN,BLRZ&#xd;&#xa;FROM ST_RSVR_R &#xd;&#xa;where tm &#x3e; &#x27;&#x24;&#x7b;TIME_STAMP&#x7d;&#x27;&#x3b;</sql>
+    <sql>SELECT Rtrim&#x28;STCD&#x29; as STCD,CONVERT&#x28;varchar&#x28;100&#x29;, TM, 120&#x29; as TM,RZ,INQ,W,OTQ,RWPTN,BLRZ&#xd;&#xa;FROM ST_RSVR_R &#xd;&#xa;where tm &#x3e; &#x27;&#x24;&#x7b;TIME_STAMP_RSVR&#x7d;&#x27;&#x3b;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -383,6 +384,25 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>308</xloc>
       <yloc>260</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>644</xloc>
+      <yloc>423</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -453,25 +473,6 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>597</xloc>
       <yloc>128</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>644</xloc>
-      <yloc>423</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

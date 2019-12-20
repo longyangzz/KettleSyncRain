@@ -131,7 +131,8 @@
   <hop> <from>Switch &#x2f; Case</from><to>new&#x65b0;&#x6570;&#x636e;&#x4e2d;&#x6709;&#x800c;&#x65e7;&#x6570;&#x636e;&#x4e2d;&#x6ca1;&#x6709;&#x7684;&#x8bb0;&#x5f55;</to><enabled>Y</enabled> </hop>
   <hop> <from>Switch &#x2f; Case</from><to>changed&#x6570;&#x636e;&#x53d1;&#x751f;&#x4e86;&#x53d8;&#x5316;</to><enabled>Y</enabled> </hop>
   <hop> <from>new&#x65b0;&#x6570;&#x636e;&#x4e2d;&#x6709;&#x800c;&#x65e7;&#x6570;&#x636e;&#x4e2d;&#x6ca1;&#x6709;&#x7684;&#x8bb0;&#x5f55;</from><to>&#x8868;&#x8f93;&#x51fa;</to><enabled>Y</enabled> </hop>
-  <hop> <from>Switch &#x2f; Case</from><to>delete&#x65e7;&#x6570;&#x636e;&#x4e2d;&#x6709;&#x800c;&#x65b0;&#x6570;&#x636e;&#x4e2d;&#x6ca1;&#x6709;&#x7684;&#x8bb0;&#x5f55;</to><enabled>Y</enabled> </hop>
+  <hop> <from>Switch &#x2f; Case</from><to>delete&#x65e7;&#x6570;&#x636e;&#x4e2d;&#x6709;&#x800c;&#x65b0;&#x6570;&#x636e;&#x4e2d;&#x6ca1;&#x6709;&#x7684;&#x8bb0;&#x5f55;</to><enabled>N</enabled> </hop>
+  <hop> <from>Switch &#x2f; Case</from><to>delete</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>Switch &#x2f; Case</name>
@@ -156,7 +157,7 @@
 </case><case><value>changed</value>
 <target_step>changed&#x6570;&#x636e;&#x53d1;&#x751f;&#x4e86;&#x53d8;&#x5316;</target_step>
 </case><case><value>deleted</value>
-<target_step>delete&#x65e7;&#x6570;&#x636e;&#x4e2d;&#x6709;&#x800c;&#x65b0;&#x6570;&#x636e;&#x4e2d;&#x6ca1;&#x6709;&#x7684;&#x8bb0;&#x5f55;</target_step>
+<target_step>delete</target_step>
 </case><case><value>identical</value>
 <target_step>identical&#x65e7;&#x6570;&#x636e;&#x548c;&#x65b0;&#x6570;&#x636e;&#x4e00;&#x6837;</target_step>
 </case></cases>     <cluster_schema/>
@@ -243,8 +244,27 @@
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>474</xloc>
-      <yloc>592</yloc>
+      <xloc>610</xloc>
+      <yloc>426</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>delete&#x65e7;&#x6570;&#x636e;&#x4e2d;&#x6709;&#x800c;&#x65b0;&#x6570;&#x636e;&#x4e2d;&#x6ca1;&#x6709;&#x7684;&#x8bb0;&#x5f55;</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>855</xloc>
+      <yloc>400</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -421,25 +441,6 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>597</xloc>
       <yloc>128</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>delete&#x65e7;&#x6570;&#x636e;&#x4e2d;&#x6709;&#x800c;&#x65b0;&#x6570;&#x636e;&#x4e2d;&#x6ca1;&#x6709;&#x7684;&#x8bb0;&#x5f55;</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>682</xloc>
-      <yloc>406</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
