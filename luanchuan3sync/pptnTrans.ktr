@@ -345,7 +345,7 @@
            <schema_name/>
            </partitioning>
     <connection>target</connection>
-    <sql>SELECT Rtrim&#x28;STCD&#x29; as STCD,CONVERT&#x28;varchar&#x28;100&#x29;, TM, 120&#x29; as TM,DRP,INTV &#xd;&#xa;FROM ST_PPTN_R &#xd;&#xa;where tm &#x3e; &#x27;&#x24;&#x7b;TIME_STAMP&#x7d;&#x27;</sql>
+    <sql>SELECT Rtrim&#x28;t1.STCD&#x29; as STCD,CONVERT&#x28;varchar&#x28;100&#x29;, t1.TM, 120&#x29; as TM,t1.DRP,t1.INTV &#xd;&#xa;FROM ST_PPTN_R t1 LEFT JOIN ST_STBPRP_B t2 ON t1.stcd &#x3d; t2.stcd&#xd;&#xa;where tm &#x3e; &#x27;&#x24;&#x7b;TIME_STAMP&#x7d;&#x27; and t2.sttp &#x21;&#x3d; &#x27;JYYLZ&#x27;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>

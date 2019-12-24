@@ -338,7 +338,7 @@
            <schema_name/>
            </partitioning>
     <connection>target</connection>
-    <sql>SELECT Rtrim&#x28;STCD&#x29; as STCD,CONVERT&#x28;varchar&#x28;100&#x29;, t1.TM, 120&#x29; as TM,isnull&#x28;t1.Z,0&#x29; as Z,isnull&#x28;t1.Q,0&#x29; as Q&#xd;&#xa;FROM ST_RIVER_R t1&#xd;&#xa;where t1.TM&#x3e; &#x27;&#x24;&#x7b;TIME_STAMP_RIVER&#x7d;&#x27;&#x3b;</sql>
+    <sql>SELECT Rtrim&#x28;t1.STCD&#x29; as STCD,CONVERT&#x28;varchar&#x28;100&#x29;, t1.TM, 120&#x29; as TM,isnull&#x28;t1.Z,0&#x29; as Z,isnull&#x28;t1.Q,0&#x29; as Q&#xd;&#xa;FROM ST_RIVER_R t1 LEFT JOIN ST_STBPRP_B t2 ON t1.stcd &#x3d; t2.stcd&#xd;&#xa;where t1.TM&#x3e; &#x27;&#x24;&#x7b;TIME_STAMP_RIVER&#x7d;&#x27; and t2.sttp &#x21;&#x3d; &#x27;JYSWZ&#x27;&#x3b;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -370,8 +370,6 @@
     <values>
       <value>STCD</value>
       <value>TM</value>
-      <value>Z</value>
-      <value>Q</value>
     </values>
 <flag_field>flagfield</flag_field>
 <reference>target&#x8868;&#x8f93;&#x5165;</reference>
