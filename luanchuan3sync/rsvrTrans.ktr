@@ -75,42 +75,45 @@
   </notepads>
   <connection>
     <name>source</name>
-    <server>111.198.29.34</server>
-    <type>MSSQL</type>
+    <server>10.0.0.100</server>
+    <type>MSSQLNATIVE</type>
     <access>Native</access>
-    <database>HSFX_BJDB_TEST</database>
-    <port>3348</port>
-    <username>BJTEST</username>
-    <password>Encrypted 2befcc6a60dc49a91aa17a9508cc2fe88</password>
+    <database>SC_YSQ2011</database>
+    <port>3480</port>
+    <username>sasa</username>
+    <password>Encrypted 2be98dcab1dcdad97b811fb2590c3fd89</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
     <attributes>
+      <attribute><code>EXTRA_OPTION_MSSQL.instance</code><attribute>MSSQLSERVER</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>MSSQLUseIntegratedSecurity</code><attribute>false</attribute></attribute>
       <attribute><code>MSSQL_DOUBLE_DECIMAL_SEPARATOR</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>3348</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>3480</attribute></attribute>
       <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
-      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
-      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
   <connection>
     <name>target</name>
-    <server>192.168.1.222</server>
+    <server>10.0.0.100</server>
     <type>MSSQL</type>
     <access>Native</access>
-    <database>HSFX_BJDB_TEST</database>
+    <database>HSFX_PZDB_TEST</database>
     <port>1433</port>
     <username>sa</username>
-    <password>Encrypted 2be98afc86aa7f2e4cb79aa73d285a4d0</password>
+    <password>Encrypted 2be98afc86aa7f2e4cb0abf7c8cc2fd8a</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
     <attributes>
+      <attribute><code>EXTRA_OPTION_MSSQL.instance</code><attribute>MSSQL2014</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
@@ -316,7 +319,7 @@
            <schema_name/>
            </partitioning>
     <connection>source</connection>
-    <sql>SELECT Rtrim&#x28;t1.STCD&#x29; as STCD,CONVERT&#x28;varchar&#x28;100&#x29;, t1.TM, 120&#x29; as TM,t1.RZ,t1.INQ,t1.W,t1.OTQ,t1.RWPTN,t1.BLRZ&#xd;&#xa;  FROM &#x5b;dbo&#x5d;.&#x5b;ST_RSVR_R&#x5d; t1 left join  ST_STBPRP_B t2 on t1.STCD &#x3d; t2.STCD where t1.TM &#x3e; &#x27;&#x24;&#x7b;TIME_STAMP_RSVR&#x7d;&#x27;&#x3b;</sql>
+    <sql>SELECT Rtrim&#x28;t1.STCD&#x29; as STCD,CONVERT&#x28;varchar&#x28;100&#x29;, t1.TM, 121&#x29; as TM,t1.RZ,t1.INQ,t1.W,t1.OTQ,t1.RWPTN,t1.BLRZ&#xd;&#xa;  FROM &#x5b;dbo&#x5d;.&#x5b;ST_RSVR_R&#x5d; t1 left join  ST_STBPRP_B t2 on t1.STCD &#x3d; t2.STCD where t1.TM &#x3e; DATEADD&#x28;HH ,&#x24;&#x7b;ROLL_BACK_HOURS&#x7d;, &#x27;&#x24;&#x7b;TIME_STAMP_RSVR&#x7d;&#x27;&#x29; AND t1.TM&#x3c;&#x3d; getdate&#x28;&#x29;&#x3b;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -342,7 +345,7 @@
            <schema_name/>
            </partitioning>
     <connection>target</connection>
-    <sql>SELECT Rtrim&#x28;STCD&#x29; as STCD,CONVERT&#x28;varchar&#x28;100&#x29;, TM, 120&#x29; as TM,RZ,INQ,W,OTQ,RWPTN,BLRZ&#xd;&#xa;FROM ST_RSVR_R &#xd;&#xa;where tm &#x3e; &#x27;&#x24;&#x7b;TIME_STAMP_RSVR&#x7d;&#x27;&#x3b;</sql>
+    <sql>SELECT Rtrim&#x28;STCD&#x29; as STCD,CONVERT&#x28;varchar&#x28;100&#x29;, TM, 121&#x29; as TM,RZ,INQ,W,OTQ,RWPTN,BLRZ&#xd;&#xa;FROM ST_RSVR_R &#xd;&#xa;where tm &#x3e; &#x27;&#x24;&#x7b;TIME_STAMP_RSVR&#x7d;&#x27;&#x3b;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
